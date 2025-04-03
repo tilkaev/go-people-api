@@ -1,10 +1,4 @@
-package model
-
-type Friendship struct {
-	ID       uint
-	UserID   uint
-	FriendID uint
-}
+package person
 
 type Person struct {
 	ID          uint

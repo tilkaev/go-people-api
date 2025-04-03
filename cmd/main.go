@@ -1,22 +1,36 @@
 package main
 
 import (
+	"go-people-api/internal/application/person"
+	"go-people-api/internal/infrastructure/persistence"
+	"go-people-api/internal/interfaces/http"
+
 	"github.com/gin-gonic/gin"
-	"go-people-api/internal/handlers"
-	"go-people-api/internal/repository"
 )
 
 func main() {
-	repository.InitDB()
 
-	// Создаём новый роутер Gin
+	personRepo := persistence.NewPersonRepository()
+	personUS := person.NewUseCase(personRepo)
+
+	orderHandler := http.NewOrderHandler(personUS)
+
 	r := gin.Default()
+	r.POST("/addPeople", orderHandler.CreatePeople)
 
-	r.GET("/people", handlers.GetPeople)
-	r.POST("/people", handlers.CreatePerson)
-
-	// Запускаем сервер на порту 8080
 	r.Run(":8080")
+
+	/*
+		repository.InitDB()
+
+		// Создаём новый роутер Gin
+		r := gin.Default()
+
+		r.GET("/people", handlers.GetPeople)
+		r.POST("/people", handlers.CreatePerson)
+
+		// Запускаем сервер на порту 8080
+		r.Run(":8080")*/
 
 	/*
 		// Маршрут для проверки работы сервера

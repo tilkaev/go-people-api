@@ -19,7 +19,7 @@ func GetPeople(c *gin.Context) {
 
 // Добавить нового человека
 func CreatePerson(c *gin.Context) {
-	var person model.Person
+	var person model.Person1
 	if err := c.ShouldBindJSON(&person); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Неверные данные"})
 		return

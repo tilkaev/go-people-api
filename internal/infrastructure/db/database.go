@@ -4,6 +4,7 @@ import (
 	"go-people-api/internal/config"
 	"log"
 	_ "os"
+	"time"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
@@ -13,7 +14,7 @@ import (
 var DB *sqlx.DB
 
 // Инициализация БД
-func InitDB() {
+func Connect() {
 	dsn := config.Get().DatabaseDSN // Получаем DSN из конфига
 
 	var err error
@@ -22,5 +23,10 @@ func InitDB() {
 	if err != nil {
 		log.Fatal("❌ Ошибка подключения к БД:", err)
 	}
+
+	DB.SetConnMaxLifetime(5 * time.Minute)
+	DB.SetMaxOpenConns(10)
+	DB.SetMaxIdleConns(5)
+
 	log.Println("✅ Подключение к БД успешно")
 }

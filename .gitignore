@@ -37,6 +37,6 @@ go.work.sum
 
 /config.local.hcl
 /bin/
-/.idea/
+.idea/
 .env
 >>>>>>> master

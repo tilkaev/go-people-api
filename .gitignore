@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+# Created by https://www.toptal.com/developers/gitignore/api/go
+# Edit at https://www.toptal.com/developers/gitignore?templates=go
+
+### Go ###
+>>>>>>> master
 # If you prefer the allow list template instead of the deny list, see community template:
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
@@ -19,7 +26,17 @@
 
 # Go workspace file
 go.work
+<<<<<<< HEAD
 go.work.sum
 
 # env file
 .env
+=======
+
+# End of https://www.toptal.com/developers/gitignore/api/go
+
+/config.local.hcl
+/bin/
+/.idea/
+.env
+>>>>>>> master
